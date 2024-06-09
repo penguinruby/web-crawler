@@ -5,28 +5,30 @@ from os import listdir
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 # from config import _loginInput, _pwdInput, _loginButton, _username, _password, _xPathSearchBar, _xPathSearchButton, _xPathWait, _xPathDisplayMore
 #import Image as Img
 
 
-
-
 class Browser:
-    
     def __init__(self, url):
         print("initiazing browser...")
         self.options = webdriver.ChromeOptions()
         self.updateURL(url)
 
 
-
     def start(self):
-        self.browser = webdriver.Chrome(executable_path=r"C:\Users\user\Desktop\python\job\chrome.exe")
+        # self.browser = webdriver.Chrome(executable_path=r'C:\Users\user\Desktop\python\chrome-win64\chrome.exe')
+        self.browser=ChromeService(executable_path=r'C:\Users\user\Desktop\python\chrome-win64\chrome.exe')
+        self.driver=webdriver.Chrome(service=self.browser, options=self.options)
+
         # self.browser = webdriver.Chrome(chrome_options=self.options)#chrome_options=options
         self.browser.implicitly_wait(30)
         print("starting browser...")
         self.browser.get(self.url)
+
+
 
     def changeSite(self, url):
         self.browser.get(url)
@@ -294,6 +296,11 @@ class Browser:
 
 
 
+
+    
+
+
+    
 
     
 @Kukindoo[^1].
